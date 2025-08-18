@@ -4,6 +4,7 @@ NAME = btc
 CPPFLAGS = -Wall -Werror -Wextra -std=c++11
 CPP = c++
 SOURCES = src/main.cpp \
+			src/BitcoinExchange.cpp
 
 OBJDIR = obj
 OBJS = $(SOURCES:src/%.cpp=$(OBJDIR)/%.o)

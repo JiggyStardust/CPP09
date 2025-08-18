@@ -1,9 +1,14 @@
 #pragma once
 
-#include <string>
-#include <iostream>
 #include <algorithm>
+#include <exception>
+#include <fstream>
+#include <iostream>
+#include <istream>
 #include <map>
+#include <regex>
+#include <sstream>
+#include <string>
 
 class BitcoinExchange
 {
@@ -15,4 +20,6 @@ class BitcoinExchange
 		~BitcoinExchange();
 		BitcoinExchange(const BitcoinExchange &orig);
 		BitcoinExchange& operator = (const BitcoinExchange &orig);
+		void	parseDataFile();
+		void	validateAndCout(char *input);
 };
