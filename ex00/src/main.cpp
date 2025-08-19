@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sniemela <sniemela@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/19 11:23:11 by sniemela          #+#    #+#             */
+/*   Updated: 2025/08/19 11:51:24 by sniemela         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/BitcoinExchange.hpp"
 
 int main(int ac, char **av)
@@ -11,7 +23,9 @@ int main(int ac, char **av)
 	{
 		BitcoinExchange btc;
 		btc.parseDataFile();
-		btc.validateAndCout(av[1]);
+		// (void)av;
+		btc.validateInputAndCout(av[1]);
+		// std::cout << "size of data map: " << btc.getMap().size() << std::endl;
 	}
 	catch (std::exception &e)
 	{
