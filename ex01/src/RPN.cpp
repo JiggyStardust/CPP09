@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sniemela <sniemela@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: saaraniemela <saaraniemela@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:38:24 by sniemela          #+#    #+#             */
-/*   Updated: 2025/08/19 15:12:07 by sniemela         ###   ########.fr       */
+/*   Updated: 2025/08/20 12:47:45 by saaraniemel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,85 @@ RPN& RPN::operator = (const RPN& orig) {
 	return (*this);
 }
 
-void	RPN::parseInput(const std::string &input)
+bool	tokenIsOperator(std::string &token)
+{
+	if (token == "+" || token == "-" || token == "*" || token == "/") {
+		return true;
+	}
+	return false;
+}
+
+void	RPN::calculate(const std::string &input)
+{
+	std::istringstream iss(input);
+	std::string	op;
+	int			n;
+	int			first;
+	int			second;
+	int			res;
+	
+	while (iss >> op) {
+		// std::cout << "INSIDE CALCULATION LOOP\n";
+		if (!tokenIsOperator(op)) {
+			n = std::stoi(op);
+			_numbers.push(n);
+			continue;
+		}
+		second = _numbers.top();
+		_numbers.pop();
+		first = _numbers.top();
+		_numbers.pop();
+		
+		if (op == "+") {
+			res = first + second;
+			_numbers.push(res);
+		}
+		else if (op == "-") {
+			res = first - second;
+			_numbers.push(res);
+		}
+		else if (op == "*") {
+			res = first * second;
+			_numbers.push(res);
+		}
+		else if (op == "/") {
+			res = first / second;
+			_numbers.push(res);
+		}
+	}
+	std::cout << "result: " << _numbers.top() << std::endl;
+}
+
+void	RPN::validateInput(const std::string &input)
 {
 	std::istringstream iss(input);
 	std::string token;
+	int	numbers = 0;
+	int	operators = 0;
+	
 	while (iss >> token){
-		if (token == "+" || token == "-" || token == "*" || token == "/") {
-			if (_numbers.size() == 0 || _numbers.size() < _tokens.size() + 1) {
-				throw std::runtime_error("Invalid operation: operands need to take place before operators and operands > operators.");
+		if (tokenIsOperator(token)) {
+			if (numbers < operators + 2) {
+				throw std::runtime_error("Invalid syntax: operands need to take place before operators and operands > operators.");
 			}
 			else {
-				_tokens.push(token);
+				// _tokens.push(token);
+				operators++;
 			}
 		}
-		else if () {
-
+		else if ((token.size() == 1 && token >= "0" && token <= "9") || (token.size() == 2 && token >= "-1" && token <= "-9")) {
+			// _tokens.push(token);
+			numbers++;
 		}
-		else
+		else {
+			throw std::runtime_error("Invalid syntax: supported symbols are digits and + - * /");
+		}
 	}
+	if (!tokenIsOperator(token)) {
+		throw std::runtime_error("Invalid syntax: operator should be placed last.");
+	}
+	else if (operators != numbers - 1) {
+		throw std::runtime_error("Invalid syntax: invalid amount of operands and operators"); 
+	}
+	// std::cout << "Valid syntax!\n";
 }

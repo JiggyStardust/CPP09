@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sniemela <sniemela@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: saaraniemela <saaraniemela@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:42:48 by sniemela          #+#    #+#             */
-/*   Updated: 2025/08/19 15:04:10 by sniemela         ###   ########.fr       */
+/*   Updated: 2025/08/20 12:47:49 by saaraniemel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@ int main(int ac, char **av)
 	}
 	try {
 		RPN rpn;
-		rpn.parseInput(std::string(av[1]));
+		rpn.validateInput(std::string(av[1]));
+		// std::cout << "trying to calculate\n";
+		rpn.calculate(std::string(av[1]));
 	}
 	catch (std::exception &e) {
-
+		std::cerr << "Error: " << e.what() << std::endl;
+		return 1;
 	}
-	(void)av;
-	return (0);
+	return 0;
 }
