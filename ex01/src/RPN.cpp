@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saaraniemela <saaraniemela@student.42.f    +#+  +:+       +#+        */
+/*   By: sniemela <sniemela@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:38:24 by sniemela          #+#    #+#             */
-/*   Updated: 2025/08/20 12:47:45 by saaraniemel      ###   ########.fr       */
+/*   Updated: 2025/08/25 10:08:23 by sniemela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,15 @@ void	RPN::calculate(const std::string &input)
 {
 	std::istringstream iss(input);
 	std::string	op;
-	int			n;
-	int			first;
-	int			second;
-	int			res;
+	float		n;
+	float		first;
+	float		second;
+	float		res;
 	
 	while (iss >> op) {
 		// std::cout << "INSIDE CALCULATION LOOP\n";
 		if (!tokenIsOperator(op)) {
-			n = std::stoi(op);
+			n = std::stof(op);
 			_numbers.push(n);
 			continue;
 		}

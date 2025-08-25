@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saaraniemela <saaraniemela@student.42.f    +#+  +:+       +#+        */
+/*   By: sniemela <sniemela@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:30:22 by sniemela          #+#    #+#             */
-/*   Updated: 2025/08/20 12:23:46 by saaraniemel      ###   ########.fr       */
+/*   Updated: 2025/08/25 10:06:51 by sniemela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 class RPN {
 	private:
-		std::stack<int> _numbers;
+		std::stack<float> _numbers;
 		std::stack<std::string> _tokens;
 		std::stack<std::string> _operators;
 	public:
